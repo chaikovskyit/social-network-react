@@ -1,17 +1,20 @@
 .nav {
 	grid-area: n;
 	background-color: rgb(251, 251, 0);
+	padding: 20px;
 }
 
 .item {
 	color: black;
 }
 
-.item.active {
-	color: black;
-	font-weight: bold;
+.item a.activeLink {
+	background-color: black;
+	color: yellow;
+	border-radius: 3px;
 }
 
 .nav a {
 	text-decoration: none;
+	color: black;
 }
