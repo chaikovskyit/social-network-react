@@ -11,3 +11,8 @@
 	height: 98vh;
 }
 
+.app-wrapper-content {
+	grid-area: c;
+	background-color: black;
+	color: rgb(251, 251, 0);
+}
