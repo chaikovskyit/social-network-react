@@ -5,6 +5,7 @@
 .dialogs {
 	display: grid;
 	grid-template-columns: 2fr 10fr;
+	grid-gap: 5px;
 	padding-top: 20px;
 }
 

@@ -6,6 +6,8 @@
 
 .item {
 	color: black;
+	margin-top: 10px;
+	font-size: 20px;
 }
 
 .item a.activeLink {
@@ -17,4 +19,9 @@
 .nav a {
 	text-decoration: none;
 	color: black;
+}
+
+.people {
+	display: flex;
+	justify-content: space-between;
 }
