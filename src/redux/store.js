@@ -1,3 +1,7 @@
+import friendsListReducer from "./friendsListReducer"
+import profileReducer from "./profileReducer"
+import dialogsReducer from './dialogsReducer'
+
 let store = {
 
   _state: {
@@ -19,8 +23,11 @@ let store = {
         {id: 1, message: "Hello"},
         {id: 2, message: "Hi"},
         {id: 3, message: "Yo"}
-      ]
+      ],
+      newMessageBody: '',
     },
+    
+
     friendsList: {
       friends: [
         {id: 1, name: "Yoda", ava: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOZDXIMcKgVVJu7CyqaiGnzVqpmWG24iEyrA&usqp=CAU'},
@@ -29,6 +36,7 @@ let store = {
       ]
     }
   },
+
   _callSubscriber() {
     console.log('State changed')
   },
@@ -41,19 +49,13 @@ let store = {
   },
 
   dispatch(action) {
-    if(action.type  === 'ADD-POST'){
-      let newPost = {
-        id: 5,
-        message: this._state.profilePage.newPostText,
-        likesCount: 0
-      }
-      this._state.profilePage.posts.push(newPost)
-      this._state.profilePage.newPostText = ''
-      this._callSubscriber(this._state)
-    } else if(action.type === 'UPDATE-NEW-POST-TEXT') {
-      this._state.profilePage.newPostText = action.newText
-      this._callSubscriber(this._state)
-    }
+
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+    this._state.profilePage = profileReducer(this._state.profilePage, action)
+    this._state.friendsList = friendsListReducer(this._state.friendsList, action)
+
+    this._callSubscriber(this._state)
+
   }
 
   
@@ -62,17 +64,7 @@ let store = {
 export default store
 window.store = store;
 
-export let addPostActionCreator = () => {
-  return {
-    type: 'ADD-POST'
-  }
-}
 
-export let updateNewPostTextActionCreator = (text) => {
-  return {
-    type: 'UPDATE-NEW-POST-TEXT',
-    newText: text
-  }
-}
+ 
 
 

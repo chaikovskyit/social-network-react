@@ -6,8 +6,6 @@ import Friends from './Friends/Friends'
 
 const Navbar = (props) => {
 
-  let friendsItem = props.state.friends.map((person) => (<Friends name={person.name} ava={person.ava}/>))
-
   return(
     <nav className={s.nav}>
       <div className={`${s.item} ${s.active}`}>
@@ -27,9 +25,7 @@ const Navbar = (props) => {
       </div>
       <hr/>
       <h2>Friends</h2>
-      <div className={s.people}>
-        {friendsItem}
-      </div>
+      
       
     </nav>
   )
