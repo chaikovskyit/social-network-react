@@ -1,0 +1,35 @@
+.users {
+  color: #e4e6eb;
+}
+
+.user{
+  background-color: grey;
+  margin: 10px;
+  border-radius: 10px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  width: 1000px;
+
+}
+
+
+.userPhoto {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.selectedPage {
+  font-weight: bold;
+}
+
+.statusAndLocation {
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+.status {
+  
+}

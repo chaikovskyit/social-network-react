@@ -1,15 +1,34 @@
 import React from 'react'
 import s from './ProfileInfo.module.css'
+import Preloader from '../../common/Preloader/Preloader'
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+  if(!props.profile){
+    return <Preloader />
+  }
+
   return(
-    <div>
-      <div>
-        <img src="https://data3.origin.com/asset/content/dam/originx/web/app/games/star-wars/star-wars-squadrons/features/maverick_pdp_prefeature_mission_en_ww_v1.jpg/864772b4-37cc-4f6d-b3f0-d144e29ea5c5/original.jpg" alt="img"/>
-      </div>
-        Main content
-      <div>
-        ava + content
+    <div className={s.profile}>
+      <div className={s.profileInfo}>
+        <div className={s.profilePhoto}>
+          <img src={props.profile.photos.large}/>
+        </div>
+        <div className={s.info}>
+        <p>Full name: {props.profile.fullName}</p>
+          <p>About Me: {props.profile.aboutMe}</p>
+          <p>I'm in social network</p>
+          <ul>
+            <li>facebook: {props.profile.contacts.facebook} </li>
+            <li>website: {props.profile.contacts.website} </li>
+            <li>vkontakte: {props.profile.contacts.vk} </li>
+            <li>twitter: {props.profile.contacts.twitter} </li>
+            <li>instagram: {props.profile.contacts.instagram} </li>
+            <li>youtube: {props.profile.contacts.youtube} </li>
+            <li>github: {props.profile.contacts.github} </li>
+          </ul>
+          <p>Looking for a job: {props.profile.lookingForAJob ? 'Yes' : 'No'} </p> 
+          <p>Job description: {props.profile.lookingForAJobDescription}</p>
+        </div>
       </div>
     </div>
   )
