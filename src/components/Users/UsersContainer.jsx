@@ -3,40 +3,25 @@ import {connect} from 'react-redux'
 import { 
   follow, 
   unfollow, 
-  setUsers,
   setCurrentPage, 
-  setTotalUsersCount, 
-  toggleIsFetching,
-  toggleFollowingProgress
+  toggleFollowingProgress,
+  getUsers
 } from '../../redux/usersReducer'
-import * as axios from 'axios'
 import Users from './Users'
 import Preloader from '../common/Preloader/Preloader'
-import {usersAPI} from '../../api/api'
 
 class UsersContainer extends React.Component {
  
   componentDidMount() {
-    this.props.toggleIsFetching(true)
-
-    usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-      
-        this.props.toggleIsFetching(false)
-        this.props.setUsers(data.items)
-        this.props.setTotalUsersCount(data.totalCount)
-      })
+    this.props.getUsers(this.props.currentPage, this.props.pageSize); // викликю колбек(діспачу)
   } 
 
   onPageChanged = (pageNumber) => {
-    this.props.setCurrentPage(pageNumber)
-    this.props.toggleIsFetching(false)
-    
-    usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
-        this.props.toggleIsFetching(false)
-        this.props.setUsers(data.items)
-      })
+    this.props.getUsers(pageNumber, this.props.pageSize) // викликю колбек(діспачу)
   }
+
   render() {
+
     return(
       <>
         {this.props.isFetching ? <Preloader /> : null}
@@ -48,12 +33,13 @@ class UsersContainer extends React.Component {
           follow={this.props.follow}
           users={this.props.users}
           onPageChanged={this.onPageChanged}
-          toggleFollowingProgress={this.props.toggleFollowingProgress}
+          
           followingInProgress={this.props.followingInProgress}
         />
       </>
     )
   }
+
 }
 
 let mapStateToProps = (state) => {
@@ -70,10 +56,8 @@ let mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   follow,
   unfollow,
-  setUsers,
   setCurrentPage,
-  setTotalUsersCount,
-  toggleIsFetching,
-  toggleFollowingProgress
+  toggleFollowingProgress, 
+  getUsers, // thunk creator
 })(UsersContainer)
 

@@ -1,4 +1,5 @@
 import * as axios from 'axios'
+import { follow } from '../redux/usersReducer'
 
 const instance = axios.create({
   baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -16,8 +17,21 @@ export const usersAPI = {
         return response.data
       })
     )
+  },
+
+  follow(userId) {
+    return (
+      instance.post(`follow/${userId}`)
+    )
+  },
+
+  unfollow(userId) {
+    return (
+      instance.delete(`follow/${userId}`)
+    )
   }
-  
+
+
 }
 
 
