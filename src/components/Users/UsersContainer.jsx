@@ -6,7 +6,8 @@ import {
   setUsers,
   setCurrentPage, 
   setTotalUsersCount, 
-  toggleIsFetching
+  toggleIsFetching,
+  toggleFollowingProgress
 } from '../../redux/usersReducer'
 import * as axios from 'axios'
 import Users from './Users'
@@ -47,6 +48,8 @@ class UsersContainer extends React.Component {
           follow={this.props.follow}
           users={this.props.users}
           onPageChanged={this.onPageChanged}
+          toggleFollowingProgress={this.props.toggleFollowingProgress}
+          followingInProgress={this.props.followingInProgress}
         />
       </>
     )
@@ -59,7 +62,8 @@ let mapStateToProps = (state) => {
     pageSize: state.usersPage.pageSize, // прокидуємо з редюсера розмір сторіночки
     totalUsersCount: state.usersPage.totalUsersCount, // прокидуємо з редюсера загальну кількість юз
     currentPage: state.usersPage.currentPage, // прокидуємо з редюсера поточну сторінку
-    isFetching: state.usersPage.isFetching
+    isFetching: state.usersPage.isFetching,
+    followingInProgress: state.usersPage.followingInProgress
   }
 }
 
@@ -69,6 +73,7 @@ export default connect(mapStateToProps, {
   setUsers,
   setCurrentPage,
   setTotalUsersCount,
-  toggleIsFetching
+  toggleIsFetching,
+  toggleFollowingProgress
 })(UsersContainer)
 
