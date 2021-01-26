@@ -2,11 +2,12 @@ import React from 'react'
 import s from './Users.module.css'
 import userPhoto from '../../assets/images/User-red.png'
 import {NavLink} from 'react-router-dom'
+import Pagination from '../Pagination/Pagination'
 
 const Users = (props) => {
 
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize) 
-    let pages = []; 
+  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize) // кількість сторінок
+    let pages = [];   // масив сторінок
     for(let i=1; i <= pagesCount; i++){
       pages.push(i)
     }
@@ -17,7 +18,8 @@ const Users = (props) => {
         <div className={s.pagination}>
           {pages.map(p => {
             return (
-              <span className={props.currentPage === p && s.selectedPage } onClick={(e) => {props.onPageChanged(p)}}>{p}</span>
+              <span className={props.currentPage === p && s.selectedPage } 
+              onClick={(e) => {props.onPageChanged(p)}}>{p}&nbsp;</span>
             )
           })}
         </div>
@@ -57,6 +59,11 @@ const Users = (props) => {
               </div>
             </div> )
         }
+        <Pagination 
+          lastPage={pagesCount}
+          onPageChanged={props.onPageChanged}
+          currentPage={props.currentPage}
+        />
     </div>
   )
 }

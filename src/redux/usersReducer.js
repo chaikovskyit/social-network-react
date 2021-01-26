@@ -11,7 +11,7 @@ const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS'
 
 let initialState = {
   users: [], 
-  pageSize: 5, //кількість юзерів на сторінці
+  pageSize: 15, //кількість юзерів на сторінці
   totalUsersCount: 0, //загальна кількість юзерів на сервері 
   currentPage: 1, // поточна сторінка відображення
   isFetching: false,
@@ -49,6 +49,7 @@ const usersReducer = (state = initialState, action) => {
     }
 
     case SET_CURRENT_PAGE: {
+      
       return { ...state, currentPage: action.currentPage }
     }
 
@@ -93,6 +94,7 @@ export const getUsers = (currentPage, pageSize) => {
       dispatch(toggleIsFetching(false))
       dispatch(setUsers(data.items))
       dispatch(setTotalUsersCount(data.totalCount))
+      dispatch(setCurrentPage(currentPage))
     });
   }
 }
