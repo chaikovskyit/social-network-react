@@ -11,11 +11,11 @@ const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS'
 
 let initialState = {
   users: [], 
-  pageSize: 15, //кількість юзерів на сторінці
+  pageSize: 7, //кількість юзерів на сторінці
   totalUsersCount: 0, //загальна кількість юзерів на сервері 
   currentPage: 1, // поточна сторінка відображення
   isFetching: false,
-  followingInProgress: []
+  followingInProgress: [] // масив куди зберігаються id юзерів в яких відправився запит на сервер
 }
 
 const usersReducer = (state = initialState, action) => {
