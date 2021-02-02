@@ -86,15 +86,15 @@ export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFe
 export const toggleFollowingProgress = (isFetching, userId) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId})
 
 // Thunks creator
-export const getUsers = (currentPage, pageSize) => {
+export const requestUsers = (page, pageSize) => {
   // thunk
   return (dispatch) => {
     dispatch(toggleIsFetching(true))
-    usersAPI.getUsers(currentPage, pageSize).then(data => {
+    usersAPI.getUsers(page, pageSize).then(data => {
       dispatch(toggleIsFetching(false))
       dispatch(setUsers(data.items))
       dispatch(setTotalUsersCount(data.totalCount))
-      dispatch(setCurrentPage(currentPage))
+      dispatch(setCurrentPage(page))
     });
   }
 }
